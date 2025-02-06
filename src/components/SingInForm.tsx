@@ -3,10 +3,15 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { Input } from "./ui/input.tsx";
 import { object, ObjectSchema, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
 
 interface ISingInForm {
   email: string;
   password: string;
+}
+
+interface ISingInFormProps {
+  isActive: boolean;
 }
 
 const SignInSchema: ObjectSchema<ISingInForm> = object().shape({
@@ -14,7 +19,7 @@ const SignInSchema: ObjectSchema<ISingInForm> = object().shape({
   password: string().required("Password is required"),
 });
 
-export default function SingInForm() {
+export default function SingInForm({ isActive }: ISingInFormProps) {
   const {
     control,
     handleSubmit,
@@ -26,8 +31,14 @@ export default function SingInForm() {
     mode: "onBlur",
   });
 
+  useEffect(() => {
+    reset();
+  }, [isActive]);
+
   const onSubmit: SubmitHandler<ISingInForm> = data => {
-    console.log(data);
+    alert(`Email ${data.email}
+    Password: ${data.password}`);
+
     reset();
   };
 
