@@ -1,8 +1,9 @@
 import { cn } from "./utils/utils.ts";
 import { useState } from "react";
-import Input from "./components/ui/input.tsx";
 import Button from "./components/ui/button.tsx";
 import SocialIcons from "./components/SocialIcons.tsx";
+import SignUpForm from "./components/SingUpForm.tsx";
+import SingInForm from "./components/SingInForm.tsx";
 
 function App() {
   const [active, setActive] = useState(false);
@@ -22,39 +23,19 @@ function App() {
           <h1 className="text-4xl font-medium">Create Account</h1>
           <SocialIcons />
           <span className="mb-5 text-xs">Register with E-mail</span>
-          <form className="flex w-full flex-col items-center justify-center">
-            <Input type={"text"} name={"name"} placeholder={"Name"} />
-            <Input type={"email"} name={"email"} placeholder={"Enter E-mail"} />
-            <Input
-              type={"password"}
-              name={"password"}
-              placeholder={"Enter Password"}
-            />
-            <Button>Sign Up</Button>
-          </form>
+          <SignUpForm />
         </div>
 
         <div
           className={cn(
-            "absolute top-0 left-0 z-10 h-full w-1/2 transition-all duration-[600ms] ease-in-out",
+            "absolute top-0 left-0 z-10 flex h-full w-1/2 flex-col items-center justify-center border-none bg-white px-10 transition-all duration-[600ms] ease-in-out outline-none",
             active && "translate-x-full"
           )}
         >
-          <form className="flex h-full flex-col items-center justify-center border-none bg-white px-10 outline-none">
-            <h1 className="text-4xl font-medium">Sign In</h1>
-            <SocialIcons />
-            <span className="my-5 text-xs">Login With Email & Password</span>
-            <Input type={"email"} name={"email"} placeholder={"Enter E-mail"} />
-            <Input
-              type={"password"}
-              name={"password"}
-              placeholder={"Enter Password"}
-            />
-            <a className="mt-4 mb-2.5 text-sm text-neutral-600" href="#">
-              Forget Password?
-            </a>
-            <Button>Sign In</Button>
-          </form>
+          <h1 className="text-4xl font-medium">Sign In</h1>
+          <SocialIcons />
+          <span className="my-5 text-xs">Login With Email & Password</span>
+          <SingInForm />
         </div>
 
         <div
